@@ -6,7 +6,12 @@ export default function Cart(){
   const [items, setItems] = useState(getCart())
 
   useEffect(()=>{
-    setItems(getCart())
+    const handleCartChange = () => {
+      setItems(getCart())
+    }
+    
+    window.addEventListener('cart-storage-change', handleCartChange)
+    return () => window.removeEventListener('cart-storage-change', handleCartChange)
   }, [])
 
   function updateQty(id, qty){

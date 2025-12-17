@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useLoaderData, useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 import { fetchProductById } from '../lib/api'
-import { addToCart, toggleFav, getFavs } from '../lib/storage'
+import { addToCart, toggleFav, getFavs, getUser } from '../lib/storage'
 
 export async function loader({ params }){
   const product = await fetchProductById(params.id)
@@ -13,15 +14,32 @@ export default function ProductDetails(){
   const [qty, setQty] = useState(1)
   const [isFav, setIsFav] = useState(getFavs().some(f => f.id === product.id))
   const navigate = useNavigate()
+  const user = getUser()
 
   function handleAdd(){
-    addToCart({ id: product.id, title: product.title, price: product.price, thumbnail: product.thumbnail }, qty)
-    alert('Added to cart')
+    const user = getUser()
+    if(!user){
+      toast.error('Please login or continue as guest to add items to cart')
+      navigate('/login')
+      return
+    }
+    const success = addToCart({ id: product.id, title: product.title, price: product.price, thumbnail: product.thumbnail }, qty)
+    if(success){
+      toast.success('Added to cart!')
+    } else {
+      toast.error('Failed to add to cart')
+    }
   }
 
   function handleFav(){
+    if(!user){
+      toast.error('Please login to add favorites')
+      navigate('/login')
+      return
+    }
     toggleFav({ id: product.id, title: product.title, price: product.price, thumbnail: product.thumbnail })
     setIsFav(!isFav)
+    toast.success(isFav ? 'Removed from favorites' : 'Added to favorites')
   }
 
   return (
@@ -66,7 +84,11 @@ export default function ProductDetails(){
             <button onClick={handleAdd} className="flex-1 bg-blue-600 text-white py-3 rounded font-semibold hover:bg-blue-700 transition">
               Add to cart
             </button>
-            <button onClick={handleFav} className={`px-6 py-3 rounded font-semibold transition ${isFav ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-600'}`}>
+            <button 
+              onClick={handleFav} 
+              className={`px-6 py-3 rounded font-semibold transition ${isFav ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-600'}`}
+              title={user ? 'Add to favorites' : 'Login to add favorites'}
+            >
               {isFav ? '❤️' : '🤍'}
             </button>
           </div>

@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { getFavs, toggleFav } from '../lib/storage'
+import { Link, useNavigate } from 'react-router-dom'
+import { getFavs, toggleFav, getUser } from '../lib/storage'
 
 export default function Favorites(){
   const [favs, setFavs] = useState(getFavs())
+  const user = getUser()
+  const navigate = useNavigate()
 
-  useEffect(()=> setFavs(getFavs()), [])
+  useEffect(()=> setFavs(getFavs()), [user])
 
   function handleRemove(p){ 
     toggleFav(p)
     setFavs(getFavs())
+  }
+
+  if(!user){
+    return (
+      <div className="text-center py-12">
+        <p className="text-lg text-gray-600 mb-4">Please login to view your favorites.</p>
+        <Link to="/login" className="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700">
+          Go to Login
+        </Link>
+      </div>
+    )
   }
 
   if(favs.length === 0) return (
