@@ -29,7 +29,7 @@ export default function Orders(){
                 <p className="text-sm text-gray-600">{new Date(o.createdAt).toLocaleString()}</p>
               </div>
               <div className="text-right">
-                <p className="text-2xl font-bold text-blue-600">
+                <p className="text-2xl font-bold text-[#0D0D0D]">
                   ${o.items.reduce((s,i)=>s + i.qty * i.price, 0).toFixed(2)}
                 </p>
                 <p className="text-sm text-gray-600">Total</p>

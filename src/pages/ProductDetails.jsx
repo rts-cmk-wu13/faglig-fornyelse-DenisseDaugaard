@@ -63,7 +63,7 @@ export default function ProductDetails(){
           </div>
 
           <div className="mb-6">
-            <span className="text-3xl font-bold text-blue-600">${product.price}</span>
+            <span className="text-3xl font-bold text-[#0D0D0D]">${product.price}</span>
             {product.discountPercentage && (
               <span className="ml-2 text-sm text-red-600">-{product.discountPercentage}%</span>
             )}
@@ -81,7 +81,7 @@ export default function ProductDetails(){
           </div>
 
           <div className="flex gap-3 mb-6">
-            <button onClick={handleAdd} className="flex-1 bg-blue-600 text-white py-3 rounded font-semibold hover:bg-blue-700 transition">
+            <button onClick={handleAdd} className="flex-1 bg-[#0D0D0D] text-white py-3 rounded font-semibold hover:bg-[#2F2B2B] transition">
               Add to cart
             </button>
             <button 
@@ -89,7 +89,7 @@ export default function ProductDetails(){
               className={`px-6 py-3 rounded font-semibold transition ${isFav ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-600'}`}
               title={user ? 'Add to favorites' : 'Login to add favorites'}
             >
-              {isFav ? '❤️' : '🤍'}
+              {isFav ? '❤️' : '🩶'}
             </button>
           </div>
 

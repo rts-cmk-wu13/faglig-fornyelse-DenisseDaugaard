@@ -93,7 +93,7 @@ export default function Login(){
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded font-semibold hover:bg-blue-700 transition mt-6"
+            className="w-full bg-[#0D0D0D] text-white py-3 rounded font-semibold hover:bg-blue-700 transition mt-6"
           >
             Sign In
           </button>
@@ -110,7 +110,7 @@ export default function Login(){
 
         <p className="text-center text-gray-600 mt-6">
           Don't have an account?{' '}
-          <Link to="/signup" className="text-blue-600 font-semibold hover:underline">
+          <Link to="/signup" className="text-[#0D0D0D] font-semibold hover:underline">
             Create one
           </Link>
         </p>

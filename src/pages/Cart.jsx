@@ -29,7 +29,7 @@ export default function Cart(){
   if(items.length === 0) return (
     <div className="text-center py-12">
       <p className="text-lg text-gray-600 mb-4">Your cart is empty.</p>
-      <Link to="/shop" className="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700">Continue Shopping</Link>
+      <Link to="/shop" className="inline-block bg-[#0D0D0D] text-white px-6 py-3 rounded hover:bg-blue-700">Continue Shopping</Link>
     </div>
   )
 
@@ -46,7 +46,7 @@ export default function Cart(){
                 <img src={it.thumbnail} alt={it.title} className="w-24 h-24 object-cover rounded" />
                 <div className="flex-1">
                   <h3 className="font-semibold">{it.title}</h3>
-                  <p className="text-blue-600 font-bold mt-1">${it.price}</p>
+                  <p className="text-[#0D0D0D] font-bold mt-1">${it.price}</p>
                   <div className="flex items-center gap-2 mt-3">
                     <button onClick={() => updateQty(it.id, it.qty - 1)} className="px-2 py-1 border rounded text-sm">−</button>
                     <input type="number" value={it.qty} min={1} onChange={(e)=>updateQty(it.id, Number(e.target.value))} className="w-12 border rounded px-2 py-1 text-center text-sm" />
@@ -68,6 +68,7 @@ export default function Cart(){
           <div className="space-y-2 mb-4 pb-4 border-b">
             {items.map(it => (
               <div key={it.id} className="flex justify-between text-sm">
+                <img src={it.thumbnail} alt={it.title} className="w-24 h-24 object-cover rounded" />
                 <span>{it.title.slice(0, 20)}... x{it.qty}</span>
                 <span>${(it.price * it.qty).toFixed(2)}</span>
               </div>
@@ -76,10 +77,10 @@ export default function Cart(){
           <div className="mb-6">
             <div className="flex justify-between text-lg font-bold">
               <span>Total:</span>
-              <span className="text-blue-600">${total.toFixed(2)}</span>
+              <span className="text-[#0D0D0D]">${total.toFixed(2)}</span>
             </div>
           </div>
-          <Link to="/checkout" className="w-full block text-center bg-green-600 text-white py-3 rounded font-semibold hover:bg-green-700 transition">
+          <Link to="/checkout" className="w-full block text-center bg-[#0D0D0D] text-white py-3 rounded font-semibold hover:bg-[#2F2B2B] transition">
             Proceed to Checkout
           </Link>
           <button onClick={() => {setCart([]); setItems([])}} className="w-full mt-2 border border-gray-300 py-2 rounded text-sm hover:bg-gray-50">
