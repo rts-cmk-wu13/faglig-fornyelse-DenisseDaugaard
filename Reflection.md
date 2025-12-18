@@ -1,4 +1,4 @@
-## Reflexion Vibe-code opgave
+## Reflection Vibe-code opgave
 
 The task was more difficult than I thought.
 At first, everything started very well since the copilot gave me a website with the style and layout ready, along with the router.
